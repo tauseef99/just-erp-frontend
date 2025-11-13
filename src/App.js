@@ -34,7 +34,7 @@ import ProjectTeams from './Components/ProjectTeams';
 
 import JustERPs from "./Components/JustERPs";
 
-// test changes in
+// test changes in app.js
 function App() {
 
    // ✅ Connection test block
