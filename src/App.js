@@ -1,6 +1,6 @@
 // frontend/src/App.js
-import React from "react";
-import './i18n';
+
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "../src/Pages/Home";
 import SignIn from "../src/Components/SignIn";
@@ -31,17 +31,28 @@ import CustomerService from "./Components/CustomerService";
 import TermsOfService from "./Components/TermsOfService";
 import FAQ from "./Components/FAQ";
 import ProjectTeams from './Components/ProjectTeams';
-import Verify from "./Components/Verify";
 
 import JustERPs from "./Components/JustERPs";
 
-
+// test changes in
 function App() {
+
+   // ✅ Connection test block
+  useEffect(() => {
+    console.log("API URL:", process.env.REACT_APP_API_URL);
+
+    // simple GET request to test backend connection
+    fetch(`${process.env.REACT_APP_API_URL}/api/test`)
+      .then(res => res.json())
+      .then(data => console.log("Backend Response:", data))
+      .catch(err => console.error("Connection Error:", err));
+  }, []);
+
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/signIn" element={<SignIn />} />
+        <Route path="/signIn" element={<SignIn />} /> 
         <Route path="seller/dashboard" element={<SellerDashboard />} />
         <Route path="/seller/messages" element={<SellerMessages />} />
         <Route path="/buyer/dashboard" element={<BuyerLayout><BuyerDashboard /></BuyerLayout>}/>
@@ -67,7 +78,6 @@ function App() {
         <Route path="/erp/team" element={<ProjectTeams />} />
         <Route path="/faq" element={<FAQ />} />
          <Route path="/justerps" element={<JustERPs/>} />
-         <Route path="/verify" element={<Verify/>} />
 
 
 
